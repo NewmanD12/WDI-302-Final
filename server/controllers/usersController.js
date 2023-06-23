@@ -1,4 +1,4 @@
-const { generatePasswordHash } = require('../middleware/auth')
+const { generatePasswordHash, validatePW, generateUserToken } = require('../middleware/auth')
 const User = require('../models/Users')
 
 async function createUser(req, res) {
@@ -39,7 +39,52 @@ async function createUser(req, res) {
     }
 }
 
+const login = async (req, res) => {
+    try {
+
+        const userName = req.body.userName;
+        const password = req.body.password;
+        const user = await User.findOne({userName : userName})
+
+        if(!user){
+            res.json({
+                success : false,
+                message : 'Could not find user'
+            }).status(204)
+        }
+
+        const firstName = user.firstName
+        const lastName = user.lastName
+
+        const isPWValid = await validatePW(password, user.password)
+
+        if (!isPWValid) {
+            res
+            .json({ success: false, message: "Password was incorrect." })
+            .status(204);
+            return;
+        }
+
+        const userData = {
+            date : new Date(),
+            userName : user.userName,
+            userFirstName: firstName,
+            userLastName: lastName
+        }
+
+        const token = generateUserToken(userData)
+        res.json({
+            success : true,
+            token : token
+        })
+
+
+    } catch (error) {
+        console.log(error)
+    }
+}
 
 module.exports = {
-    createUser
+    createUser,
+    login
 }
