@@ -8,7 +8,7 @@ const cors = require('cors');
 
 require("dotenv").config()
 
-const { mongooseConnect } = require('./mongoose.js')
+const { mongooseConnect } = require('./middleware/mongoose')
 mongooseConnect()
 
 
