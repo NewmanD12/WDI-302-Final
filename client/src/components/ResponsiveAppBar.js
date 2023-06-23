@@ -40,7 +40,7 @@ function ResponsiveAppBar() {
     <AppBar position="static">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }}} />
+            <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }}} color='secondary' />
             <Typography
                 variant="h6"
                 noWrap
@@ -51,7 +51,7 @@ function ResponsiveAppBar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
+                color: '#dad4be',
                 textDecoration: 'none',
                 }}
             >
@@ -65,11 +65,12 @@ function ResponsiveAppBar() {
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
                 onClick={handleOpenNavMenu}
-                color="inherit"
+                color="secondary"
                 >
-                <MenuIcon />
+                <MenuIcon color='secondary'/>
                 </IconButton>
                 <Menu
+                
                 id="menu-appbar"
                 anchorEl={anchorElNav}
                 anchorOrigin={{
@@ -94,7 +95,7 @@ function ResponsiveAppBar() {
                 ))}
                 </Menu>
             </Box>
-            <AdbIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
+            <AdbIcon color='secondary' sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
             <Typography
                 variant="h5"
                 noWrap
@@ -107,7 +108,7 @@ function ResponsiveAppBar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
+                color: '#dad4be',
                 textDecoration: 'none',
                 }}
             >
@@ -118,7 +119,7 @@ function ResponsiveAppBar() {
                 <Button
                     key={page}
                     onClick={handleCloseNavMenu}
-                    sx={{ my: 2, color: 'white', display: 'block' }}
+                    sx={{ my: 1, color: '#dad4be', display: 'block' }}
                 >
                     {page}
                 </Button>

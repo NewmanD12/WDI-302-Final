@@ -1,0 +1,27 @@
+#main-welcome-img{
+    background-image: url("https://www.mashed.com/img/gallery/heres-why-this-coffee-costs-64/intro-1605056431.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed; 
+    background-size: cover;
+    height: 400px;
+}
+
+#welcome-statement-wrapper {
+    color: white;
+}
+
+#welcome-statement-row {
+    justify-content: center;
+    padding: 15% 0 15% 0;
+    text-align: center;
+}
+
+#get-started-button {
+    background-color: white;
+    padding: 2% 10%;
+    border: none;
+    
+}
+
+
+

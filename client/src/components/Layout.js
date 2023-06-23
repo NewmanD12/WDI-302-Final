@@ -9,13 +9,15 @@ const promos = ['Free shipping for orders $40 and over!', 'Get 30% your first su
 const Layout = () => {
     return (
         <>
-            <div id='top-promos'>
-                {promos.map((promo, index) => {
-                    return <p key={index} >{promo}</p>
-                })}
+            <div id='top-menu'>
+                <div id='top-promos'>
+                    {promos.map((promo, index) => {
+                        return <p key={index} >{promo}</p>
+                    })}
+                </div>
+                <ResponsiveAppBar /> 
+                <Outlet /> 
             </div>
-            <ResponsiveAppBar /> 
-            <Outlet /> 
         </>
     )
 }

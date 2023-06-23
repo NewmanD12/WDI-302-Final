@@ -1,6 +1,7 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
+import Welcome from './components/Welcome'
 
 function App() {
 
@@ -10,7 +11,10 @@ function App() {
       path: '/',
       element : <Layout />,
       children : [
-
+        {
+          index : true,
+          element : <Welcome />
+        }
       ]
     }
 
