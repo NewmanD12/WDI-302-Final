@@ -13,9 +13,10 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useNavigate } from "react-router-dom";
 
 const pages = ['Shop', 'Subscribe', 'Blog', 'Brew Guides', 'Locations', 'Wholesale'];
-const settings = ['Profile', 'Account', 'Logout'];
+const settings = ['Profile', 'Account'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -35,6 +36,8 @@ function ResponsiveAppBar() {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const navigate = useNavigate()
 
   return (
     <AppBar position="static">
@@ -129,7 +132,7 @@ function ResponsiveAppBar() {
             <Box sx={{ flexGrow: 0 }}>
                 <Tooltip title="Open settings">
                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                    <Avatar alt="Remy Sharp" />
                 </IconButton>
                 </Tooltip>
                 <Menu
@@ -153,6 +156,10 @@ function ResponsiveAppBar() {
                     <Typography textAlign="center">{setting}</Typography>
                     </MenuItem>
                 ))}
+
+                    <MenuItem onClick={handleCloseUserMenu}>
+                        <Typography textAlign="center" onClick={() => navigate('/login')}>Login</Typography>
+                    </MenuItem>
                 </Menu>
             </Box>
 

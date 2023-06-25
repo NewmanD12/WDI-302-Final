@@ -6,32 +6,30 @@ import Row from "react-bootstrap/Row"
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
+import './Login.css'
 
 const Login = () => {
     const auth = useAuth();
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState('')
 	  const navigate = useNavigate() // be able to navigate to home on login
 
     return ( 
-        <Container id='welcome-container' fluid='md'>
-          <Row className="justify-content-center">
-            <h1>Login to view the projects!</h1>
-            <p>Need to create an account? <a href="/">Register</a></p>
-          </Row>
-          <Row className="justify-content-center">
+        <Container id='login-container' fluid='md'>
+          
+          <Row className="justify-content-center m-2" >
             <Col md={6}>
-              <Form id='welcome-form'>
+              <Form id='login-form'>
     
-                <Form.Group className="md-3">
-                  <Form.Label>Email Address:</Form.Label>
-                  <Form.Control type="text" placeholder="Enter your email" onChange={(e) => {
-                    setEmail(e.target.value)
+                <Form.Group className="inputs">
+                  <Form.Label>Username:</Form.Label>
+                  <Form.Control type="text" placeholder="Enter your username" onChange={(e) => {
+                    setUsername(e.target.value)
                   }}></Form.Control>
                 </Form.Group>
     
-                <Form.Group>
+                <Form.Group className="inputs">
                   <Form.Label>Password:</Form.Label>
                   <Form.Control type="password" placeholder="Enter your password" onChange={(e) => {
                     setPassword(e.target.value)
@@ -45,21 +43,25 @@ const Login = () => {
                   variant="primary" type="submit"
                   onClick={async (e) => {
                     e.preventDefault()
-                    const loginResult = await auth.login(email, password)
-                    // console.log(loginResult)
-                    if(loginResult.success) {
-                        navigate('/dashboard')
-                    }
-                    else{
-                        console.log(loginResult)
-                        setErrorMessage(loginResult.message)
-                    }
+                    console.log(username, password)
+                    // const loginResult = await auth.login(username, password)
+                    // // console.log(loginResult)
+                    // if(loginResult.success) {
+                    //     navigate('/dashboard')
+                    // }
+                    // else{
+                    //     console.log(loginResult)
+                    //     setErrorMessage(loginResult.message)
+                    // }
                   }}
                 >
                   Login
                 </Button>
               </Form>
             </Col>
+          </Row>
+          <Row className="justify-content-center">
+            <p>Don't have an account? <a href="/register">Register</a></p>
           </Row>
         </Container>
       );

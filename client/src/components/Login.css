@@ -1,0 +1,19 @@
+#login-container {
+    background-color: #dad4be;
+    padding: 10% 0% 20%
+}
+
+input {
+    height: 60px;
+}
+
+#login-button {
+    margin-top: 10%;
+    width: 100%;
+    background-color: #2b2a2b;
+    padding: 15px;
+}
+
+.inputs {
+    margin-bottom: 5%;
+}
