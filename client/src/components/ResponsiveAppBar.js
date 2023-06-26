@@ -16,14 +16,15 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
 import { useAuth } from '../Hooks/Auth';
 
-const pages = ['Shop', 'Subscribe', 'Blog', 'Brew Guides', 'Locations', 'Wholesale'];
+const pages = ['Shop', 'Subscribe', 'Blog', 'Brew Guides'];
 const settings = ['Profile', 'Account'];
 
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const auth = useAuth();
-  console.log(auth)
+  const navigate = useNavigate()
+//   console.log(auth)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -32,7 +33,9 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (e) => {
+    const page = e.target.value.toLowerCase().replace(' ', '')
+    navigate(`/${page}`)
     setAnchorElNav(null);
   };
 
@@ -40,7 +43,6 @@ function ResponsiveAppBar() {
     setAnchorElUser(null);
   };
 
-  const navigate = useNavigate()
 
   return (
     <AppBar position="static">
@@ -95,7 +97,10 @@ function ResponsiveAppBar() {
                 }}
                 >
                 {pages.map((page) => (
-                    <MenuItem key={page} onClick={handleCloseNavMenu}>
+                    <MenuItem key={page} value={page} onClick={(e) => {
+                        // console.log(e)
+                        handleCloseNavMenu(e)
+                    }}>
                     <Typography textAlign="center">{page}</Typography>
                     </MenuItem>
                 ))}
@@ -124,7 +129,11 @@ function ResponsiveAppBar() {
                 {pages.map((page) => (
                 <Button
                     key={page}
-                    onClick={handleCloseNavMenu}
+                    value={page}
+                    onClick={(e) => {
+                        // console.log(e)
+                        handleCloseNavMenu(e)
+                    }}
                     sx={{ my: 1, color: '#dad4be', display: 'block' }}
                 >
                     {page}

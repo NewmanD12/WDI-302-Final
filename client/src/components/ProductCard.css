@@ -1,0 +1,19 @@
+img{
+    height: 250px;
+}
+
+.img-container{
+    background-color: #e3ded7;
+    display: flex;
+    justify-content: center;
+    padding: 60px 0px;
+    margin-top: 30px;
+}
+
+#price{
+    font-weight: 200;
+}
+
+#bottom-info{
+    margin: 20px 0px;
+}

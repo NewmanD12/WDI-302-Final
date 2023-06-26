@@ -120,8 +120,7 @@ export const AuthProvider = ({ children }) => {
                 logout,
                 register,
             }),
-            [userToken]
-    );
+            [userToken]);
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
