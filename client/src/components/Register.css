@@ -1,0 +1,19 @@
+#register-container{
+    background-color: #dad4be;
+    padding: 3% 0% 20%
+}
+
+#register-button {
+    margin-top: 5%;
+    width: 100%;
+    background-color: #2b2a2b;
+    padding: 15px;
+}
+
+input {
+    height: 60px;
+}
+
+.inputs {
+    margin-bottom: 3%;
+}

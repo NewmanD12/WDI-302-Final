@@ -8,17 +8,20 @@ import { Provider } from 'react-redux'
 import { ThemeProvider } from '@emotion/react';
 import theme from './theme';
 import { CssBaseline } from '@mui/material';
+import { AuthProvider } from './Hooks/Auth';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+  <AuthProvider>
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Provider store={store}>
         <App />
       </Provider>
     </ThemeProvider>
+  </AuthProvider>
   </React.StrictMode>
 );
 

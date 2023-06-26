@@ -14,8 +14,7 @@ export const AuthProvider = ({ children }) => {
     const [userToken, setUserToken] = useState(null);
     const [userFirstName, setUserFirstName] = useState("")
     const [userLastName, setUserLastName] = useState("")
-    const [userEmail, setUserEmail] = useState("")
-    const [userID, setUserID] = useState("")
+    const [userName, setUserName] = useState("")
     const [isAuthLoading, setIsAuthLoading] = useState(false);
 
     useEffect(() => {
@@ -23,45 +22,34 @@ export const AuthProvider = ({ children }) => {
         //get session data if session is still active from the browser
         const userData = getLSUserData();
         
+        // console.log('userData' + userData)
         // console.log(userData)
 
         if (userData && userData.token) {
             setUserToken(userData.token);
         }
-        if (userData && userData.userFirstName) {
-            setUserFirstName(userData.userFirstName);
+        if (userData && userData.userName) {
+            setUserName(userData.userName);
         }
-        if (userData && userData.userLastName) {
-            setUserLastName(userData.userLastName);
-        }            
-        if (userData && userData.email) {
-            setUserEmail(userData.email);
-        }
-        if (userData && userData.userID) {
-            setUserToken(userData.userID);
-        }
-
     }, [isAuthLoading]);
 
     // call this function when you want to register the user
-    const register = async (firstName, lastName, email, password) => {
-        // console.log('in register')
+    const register = async (firstName, lastName, userName, password) => {
         setIsAuthLoading(true);
-        const registerResult = await registerUser(firstName, lastName, email, password);
-        console.log(registerResult)
-        if(registerResult.success){
-          const loginResult = await loginUser(email, password)
-          if(loginResult.success){
-            setLSUserData(loginResult.token, loginResult.userFirstName, loginResult.userLastName, loginResult.email)
-          }
-        }
+        const registerResult = await registerUser(firstName, lastName, userName, password);
+        // if(registerResult.success){
+        //   const loginResult = await loginUser(userName, password)
+        //   if(loginResult.success){
+        //     setLSUserData(loginResult.token, loginResult.userFirstName, loginResult.userLastName, loginResult.userName)
+        //   }
+        // }
         setIsAuthLoading(false);
         return registerResult;
     };
 
-    const registerUser = async (firstName, lastName, email, password) => {
+    const registerUser = async (firstName, lastName, userName, password) => {
 
-        const url = `${urlEndpoint}/register`;
+        const url = `${urlEndpoint}/create-user`;
         const response = await fetch(url, {
                 method: "POST",
                 headers: {
@@ -70,7 +58,7 @@ export const AuthProvider = ({ children }) => {
                 body: JSON.stringify({
                 firstName,
                 lastName,
-                email,
+                userName,
                 password,
                 }),
             });
@@ -79,21 +67,20 @@ export const AuthProvider = ({ children }) => {
     };
 
     // call this function when you want to authenticate the user
-    const login = async (email, password) => {
+    const login = async (userName, password) => {
         setIsAuthLoading(true);
-        const loginResult = await loginUser(email, password);
-            // console.log("auth hook loginResult: ", loginResult)
+        const loginResult = await loginUser(userName, password);
         if (loginResult.success) {
         //update browser session details 
-            // console.log(loginResult)
-            setLSUserData(loginResult.token, loginResult.firstName, loginResult.lastName, loginResult.email);
+            console.log(loginResult)
+            setLSUserData(loginResult.token, loginResult.userName);
         }
 
         setIsAuthLoading(false);
         return loginResult
     };
 
-    const loginUser = async (email, password) => {
+    const loginUser = async (userName, password) => {
         const url = `${urlEndpoint}/login`;
         const response = await fetch(url, {
             method: "POST",
@@ -101,12 +88,12 @@ export const AuthProvider = ({ children }) => {
             "Content-Type": "application/json",
             },
             body: JSON.stringify({
-            email,
+            userName,
             password,
             }),
         });
         const responseJSON = await response.json();
-        console.log("login user response" + responseJSON)
+        // console.log("login user response" + responseJSON)
         return responseJSON;
     };
 
@@ -115,7 +102,7 @@ export const AuthProvider = ({ children }) => {
         setIsAuthLoading(true);
         await removeLSUserData(); // This has to be awaited for the useEffect to work
         setUserToken(null);
-        setUserEmail("");
+        setUserName("");
         setIsAuthLoading(false);
     };
 
@@ -128,9 +115,7 @@ export const AuthProvider = ({ children }) => {
     const value = useMemo(
             () => ({
                 userToken,
-                userEmail,
-                userFirstName,
-                userLastName,
+                userName,
                 login,
                 logout,
                 register,
@@ -145,13 +130,13 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-const setLSUserData = (token, userFirstName, userLastName, email) => {
+const setLSUserData = (token, userName) => {
 
-  // caching our token session/ email 
+  // caching our token session/ userName 
   // in the browser window
   localStorage.setItem(
     process.env.REACT_APP_TOKEN_HEADER_KEY,
-    JSON.stringify({token, userFirstName, userLastName, email})
+    JSON.stringify({token, userName})
   );
 };
 

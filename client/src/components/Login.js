@@ -17,6 +17,9 @@ const Login = () => {
 
     return ( 
         <Container id='login-container' fluid='md'>
+        <Row className="justify-content-center m-2">
+          <h1>Login</h1>
+        </Row>
           
           <Row className="justify-content-center m-2" >
             <Col md={6}>
@@ -43,16 +46,16 @@ const Login = () => {
                   variant="primary" type="submit"
                   onClick={async (e) => {
                     e.preventDefault()
-                    console.log(username, password)
-                    // const loginResult = await auth.login(username, password)
-                    // // console.log(loginResult)
-                    // if(loginResult.success) {
-                    //     navigate('/dashboard')
-                    // }
-                    // else{
-                    //     console.log(loginResult)
-                    //     setErrorMessage(loginResult.message)
-                    // }
+                    // console.log(username, password)
+                    const loginResult = await auth.login(username, password)
+                    // console.log(loginResult)
+                    if(loginResult.success) {
+                        navigate('/')
+                    }
+                    else{
+                        console.log(loginResult)
+                        setErrorMessage(loginResult.message)
+                    }
                   }}
                 >
                   Login

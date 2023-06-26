@@ -14,6 +14,7 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useNavigate } from "react-router-dom";
+import { useAuth } from '../Hooks/Auth';
 
 const pages = ['Shop', 'Subscribe', 'Blog', 'Brew Guides', 'Locations', 'Wholesale'];
 const settings = ['Profile', 'Account'];
@@ -21,6 +22,8 @@ const settings = ['Profile', 'Account'];
 function ResponsiveAppBar() {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const auth = useAuth();
+  console.log(auth)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -157,9 +160,19 @@ function ResponsiveAppBar() {
                     </MenuItem>
                 ))}
 
-                    <MenuItem onClick={handleCloseUserMenu}>
-                        <Typography textAlign="center" onClick={() => navigate('/login')}>Login</Typography>
-                    </MenuItem>
+                    {!auth.userToken && <MenuItem onClick={handleCloseUserMenu}>
+                            <Typography textAlign="center" onClick={() => navigate('/login')}>Login</Typography>
+                        </MenuItem>
+                    }
+
+                    {auth.userToken && <MenuItem onClick={handleCloseUserMenu}>
+                            <Typography textAlign="center" onClick={() => {
+                                auth.logout()
+                                navigate('/')
+                            }}>Logout</Typography>
+                        </MenuItem>
+                    }
+
                 </Menu>
             </Box>
 

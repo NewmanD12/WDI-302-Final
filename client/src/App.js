@@ -5,6 +5,8 @@ import Welcome from './components/Welcome'
 import Login from './components/Login';
 import Register from './components/Register';
 
+const userURLEndpoint = process.env.REACT_APP_USER_ENDPOINT
+
 function App() {
 
   const router = createBrowserRouter([
@@ -23,7 +25,9 @@ function App() {
         },
         {
           path : "/register",
-          element : <Register />
+          element : <Register 
+                      userURLEndpoint={userURLEndpoint}
+                    />
         }
       ]
     }
