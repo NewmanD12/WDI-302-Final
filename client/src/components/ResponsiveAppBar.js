@@ -33,11 +33,16 @@ function ResponsiveAppBar() {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (e) => {
-    const page = e.target.value.toLowerCase().replace(' ', '')
-    navigate(`/${page}`)
+  const handleCloseNavMenu = () => {
+    // const page = e.target.value.toLowerCase().replace(' ', '')
+    // navigate(`/${page}`)
     setAnchorElNav(null);
   };
+
+  const redirectToPage = (e) => {
+        const page = e.target.value.toLowerCase().replace(' ', '')
+        navigate(`/${page}`)
+  }
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -98,10 +103,10 @@ function ResponsiveAppBar() {
                 >
                 {pages.map((page) => (
                     <MenuItem key={page} value={page} onClick={(e) => {
-                        // console.log(e)
-                        handleCloseNavMenu(e)
+                        console.log(e.target)
+
                     }}>
-                    <Typography textAlign="center">{page}</Typography>
+                    <Typography textAlign="center" >{page}</Typography>
                     </MenuItem>
                 ))}
                 </Menu>
@@ -131,8 +136,7 @@ function ResponsiveAppBar() {
                     key={page}
                     value={page}
                     onClick={(e) => {
-                        // console.log(e)
-                        handleCloseNavMenu(e)
+                        redirectToPage(e)
                     }}
                     sx={{ my: 1, color: '#dad4be', display: 'block' }}
                 >

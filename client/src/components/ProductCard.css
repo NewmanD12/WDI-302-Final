@@ -17,3 +17,10 @@ img{
 #bottom-info{
     margin: 20px 0px;
 }
+
+#add-button{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0px -22px;
+    border-bottom: 1px solid black;
+}

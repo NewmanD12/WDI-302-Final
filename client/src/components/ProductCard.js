@@ -7,7 +7,7 @@ import './ProductCard.css'
 const ProductCard = (props) => {
 
     const changeBackgroundColor = (backgroundColor, id) => {
-        // console.log(backgroundColor, id)
+        // console.log(id)
         let background = document.getElementById(`${id}`)
         background.style.backgroundColor = backgroundColor
     }
@@ -24,10 +24,13 @@ const ProductCard = (props) => {
             }}
         >
             <div className='img-container' id={`${name}`}>
-                <img src={`${name}.png`}></img>
+                <img src={`/${name}.png`}></img>
             </div>
             <div id='bottom-info'>
                 <h4>{product.name} <span id='price'>${product.price}</span></h4>
+                <div id='add-button'>
+                    <p>Add To Cart</p><p>+</p>
+                </div>
             </div>
         
         </div>

@@ -17,7 +17,7 @@ const Shop = (props) => {
     return (
 
         <Container>
-            <Row>
+            <Row className='justify-content-center'>
                 {uniqueProducts.map((product, index) => {
                     return  <Col md={4} key={index}>
                                 <ProductCard product={product} />
