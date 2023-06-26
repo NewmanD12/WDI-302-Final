@@ -9,6 +9,10 @@ const userSchema = new mongoose.Schema({
     email : String, 
     password : String,
     isAdmin : Boolean,
+    subscriptionList : [{
+        productName : String,
+        frequency : String,
+    }],
     cart : [{
         productName : String,
         productPrice : Number,

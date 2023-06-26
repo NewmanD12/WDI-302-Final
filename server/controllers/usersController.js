@@ -5,7 +5,7 @@ async function createUser(req, res) {
     try {
         const firstName = req.body.firstName
         const lastName = req.body.lastName
-        const userName = req.body.lastName
+        const userName = req.body.userName
         const password = req.body.password
 
         const user = await User.find({userName : {$eq : userName}})
@@ -41,7 +41,6 @@ async function createUser(req, res) {
 
 const login = async (req, res) => {
     try {
-
         const userName = req.body.userName;
         const password = req.body.password;
         const user = await User.findOne({userName : userName})
@@ -53,9 +52,6 @@ const login = async (req, res) => {
             }).status(204)
         }
 
-        const firstName = user.firstName
-        const lastName = user.lastName
-
         const isPWValid = await validatePW(password, user.password)
 
         if (!isPWValid) {
@@ -66,17 +62,16 @@ const login = async (req, res) => {
         }
 
         const userData = {
-            date : new Date(),
             userName : user.userName,
-            userFirstName: firstName,
-            userLastName: lastName
         }
 
         const token = generateUserToken(userData)
         res.json({
             success : true,
-            token : token
+            token,
+            userName
         })
+        return
 
 
     } catch (error) {

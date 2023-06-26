@@ -1,13 +1,15 @@
 const mongoose = require('mongoose')
-const { v4 : uuidv4 } = require('uuid')
 
 const productSchema = new mongoose.Schema({
     name : String,
     description : String,
     price : Number,
+    category: String,
+    background_color : String,
     subscription_available : Boolean,
     star_rating : Number,
-    sizes : [String],
+    available_product : Number,
+    size : String,
     reviews : [
         {
             text : String,
