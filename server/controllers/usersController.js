@@ -70,7 +70,8 @@ const login = async (req, res) => {
             success : true,
             token,
             userName, 
-            isAdmin : user.isAdmin
+            isAdmin : user.isAdmin,
+            userID : user._id
         })
         return
 
@@ -80,7 +81,12 @@ const login = async (req, res) => {
     }
 }
 
+const addToCart = async (req, res) => {
+
+}
+
 module.exports = {
     createUser,
-    login
+    login, 
+    addToCart
 }
