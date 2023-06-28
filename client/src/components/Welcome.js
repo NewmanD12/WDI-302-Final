@@ -4,9 +4,11 @@ import Col from 'react-bootstrap/Col';
 import Carousel from 'react-bootstrap/Carousel'
 
 import "./Welcome.css"
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
 
+    const navigate = useNavigate()
 
     return (
         <>
@@ -18,7 +20,7 @@ const Home = () => {
                             <br />
                             <h4>Brew it hot or cold. You brew you.</h4>
                             <br />
-                            <button id='get-started-button'>Get Started</button>
+                            <button id='get-started-button' onClick={() => navigate('/shop')}>Get Started</button>
                         </Col>
                     </Row>
                 </Container>

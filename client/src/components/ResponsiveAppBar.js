@@ -24,7 +24,7 @@ function ResponsiveAppBar() {
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const auth = useAuth();
   const navigate = useNavigate()
-  console.log(auth)
+//   console.log(auth)
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -102,11 +102,8 @@ function ResponsiveAppBar() {
                 }}
                 >
                 {pages.map((page) => (
-                    <MenuItem key={page} value={page} onClick={(e) => {
-                        console.log(e.target)
-
-                    }}>
-                    <Typography textAlign="center" >{page}</Typography>
+                    <MenuItem key={page} value={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                        <Typography textAlign="center" >{page}</Typography>
                     </MenuItem>
                 ))}
                 </Menu>
@@ -167,6 +164,11 @@ function ResponsiveAppBar() {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
                 >
+                {auth.isAdmin && <MenuItem onClick={handleCloseUserMenu}>
+                                    <Typography textAlign="center" onClick={() => navigate('#')}>Add Product</Typography>
+                                </MenuItem>
+                }
+
                 {settings.map((setting) => (
                     <MenuItem key={setting} onClick={handleCloseUserMenu}>
                     <Typography textAlign="center">{setting}</Typography>
