@@ -82,7 +82,39 @@ const login = async (req, res) => {
 }
 
 const addToCart = async (req, res) => {
+    try{
+        const { name, category, size, quantity, userID } = req.body
+        const user = await User.findOne({_id : userID})
+        let updatedCart = []
+        const product = {
+            productName : name, 
+            category, 
+            size, 
+            quantity
+        }
 
+        if(user){
+            updatedCart = [...user.cart, product]
+            // console.log(updatedCart)
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(userID,
+            {
+                cart : updatedCart
+            })
+
+
+        res.send({
+            success : true, 
+            user : updatedUser
+        })
+
+    }catch (e) {
+        res.send({
+            success : false,
+            message: e.toString()
+        })
+    }
 }
 
 module.exports = {

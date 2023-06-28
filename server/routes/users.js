@@ -12,4 +12,6 @@ router.post('/create-user', userController.createUser)
 
 router.post('/login', userController.login)
 
+router.post('/add-to-cart', userController.addToCart)
+
 module.exports = router;

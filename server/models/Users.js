@@ -13,7 +13,8 @@ const userSchema = new mongoose.Schema({
     }],
     cart : [{
         productName : String,
-        productPrice : Number,
+        category : String,
+        size : String,
         quantity : Number
     }]
 })
