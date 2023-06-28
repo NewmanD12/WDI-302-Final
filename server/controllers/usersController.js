@@ -69,7 +69,8 @@ const login = async (req, res) => {
         res.json({
             success : true,
             token,
-            userName
+            userName, 
+            isAdmin : user.isAdmin
         })
         return
 

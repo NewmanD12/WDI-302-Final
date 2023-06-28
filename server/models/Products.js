@@ -3,13 +3,15 @@ const mongoose = require('mongoose')
 const productSchema = new mongoose.Schema({
     name : String,
     description : String,
-    price : Number,
-    category: String,
     background_color : String,
     subscription_available : Boolean,
     star_rating : Number,
-    available_product : Number,
-    size : String,
+    productBreakdown : [{
+        size : String,
+        price: Number,
+        category: String,
+        quantity : Number
+    }],
     reviews : [
         {
             text : String,
