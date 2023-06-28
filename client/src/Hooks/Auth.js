@@ -12,9 +12,8 @@ const urlEndpoint = process.env.REACT_APP_USER_ENDPOINT
 */
 export const AuthProvider = ({ children }) => {
     const [userToken, setUserToken] = useState(null);
-    const [userFirstName, setUserFirstName] = useState("")
-    const [userLastName, setUserLastName] = useState("")
     const [userName, setUserName] = useState("")
+    const [isAdmin, setIsAdmin] = useState(false)
     const [isAuthLoading, setIsAuthLoading] = useState(false);
 
     useEffect(() => {
@@ -30,6 +29,9 @@ export const AuthProvider = ({ children }) => {
         }
         if (userData && userData.userName) {
             setUserName(userData.userName);
+        }
+        if (userData && userData.isAdmin){
+            setIsAdmin(true)
         }
     }, [isAuthLoading]);
 
@@ -73,7 +75,7 @@ export const AuthProvider = ({ children }) => {
         if (loginResult.success) {
         //update browser session details 
             console.log(loginResult)
-            setLSUserData(loginResult.token, loginResult.userName);
+            setLSUserData(loginResult.token, loginResult.userName, loginResult.isAdmin);
         }
 
         setIsAuthLoading(false);
@@ -116,6 +118,7 @@ export const AuthProvider = ({ children }) => {
             () => ({
                 userToken,
                 userName,
+                isAdmin,
                 login,
                 logout,
                 register,
@@ -129,13 +132,13 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-const setLSUserData = (token, userName) => {
+const setLSUserData = (token, userName, isAdmin) => {
 
   // caching our token session/ userName 
   // in the browser window
   localStorage.setItem(
     process.env.REACT_APP_TOKEN_HEADER_KEY,
-    JSON.stringify({token, userName})
+    JSON.stringify({token, userName, isAdmin})
   );
 };
 

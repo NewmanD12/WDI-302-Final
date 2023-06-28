@@ -16,6 +16,7 @@ const ProductCard = (props) => {
     }
 
     const { product } = props
+    // console.log(product)
     const name = product.name.toLowerCase().replace(' ', '_')
 
     return (
@@ -34,7 +35,7 @@ const ProductCard = (props) => {
                 <img src={`/${name}.png`}></img>
             </div>
             <div id='bottom-info'>
-                <h4>{product.name} <span id='price'>${product.price}</span></h4>
+                <h4>{product.name}</h4>
                 <div id='add-button'>
                     <p>Add To Cart</p><p>+</p>
                 </div>
