@@ -193,7 +193,7 @@ function ResponsiveAppBar() {
 
             <Box>
                 <Tooltip>
-                    <IconButton color='secondary'>
+                    <IconButton color='secondary' onClick={() => navigate('/cart')}>
                         <ShoppingCartIcon />
                     </IconButton>
                 </Tooltip>

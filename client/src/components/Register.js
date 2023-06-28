@@ -22,7 +22,7 @@ const Register = (props) => {
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
     const auth = useAuth()
-    console.log(auth)
+    // console.log(auth)
 
     const handleSubmit = async (e) => {
         e.preventDefault()

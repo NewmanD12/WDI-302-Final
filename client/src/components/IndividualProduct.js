@@ -1,13 +1,16 @@
 import React, { useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import { Container, Row, Col } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import './IndividualProduct.css'
 import Form from 'react-bootstrap/Form';
+import {useAuth} from '../Hooks/Auth'
+import axios from "axios";
+
 
 const IndividualProduct = (props) => {
 
-    const { products } = props
+    const { products, userURLEndpoint } = props
     const { name } = useParams()
     const [category, setCategory] = useState('')
     const [sizeOptions, setSizeOptions] = useState([])
@@ -15,6 +18,9 @@ const IndividualProduct = (props) => {
     const [quantity, setQuantity] = useState(1)
     const singleProduct = products.filter((product) => product.name === name)[0]
     const [possibleTotal, setPossibleTotal] = useState(0)
+    const auth = useAuth()
+    const navigate = useNavigate()
+    // console.log(userURLEndpoint)
     
     
     // console.log(singleProduct)
@@ -39,7 +45,19 @@ const IndividualProduct = (props) => {
     }
 
     const handleAddToCart = () => {
-        console.log(name, category, size, quantity)
+        // console.log(name, category, size, quantity, auth.userID)
+        // console.log(`${userURLEndpoint}/add-to-cart`)
+        axios.post(`${userURLEndpoint}/add-to-cart`, {
+            name, 
+            category, 
+            size,
+            quantity,
+            "userID" : auth.userID
+        })
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err))
+        // .finally(() => navigate('/cart'))
+        
     }
 
     let loweredName = name.toLowerCase().replace(' ', '_')
@@ -117,11 +135,14 @@ const IndividualProduct = (props) => {
                                 }
                                 
                             </Col>
-                            <Col>
-                                <div id='add-to-cart-wrapper'>
-                                    <button id='add-to-cart-button' onClick={() => handleAddToCart()}>Add To Cart</button>
-                                </div>
-                            </Col>
+                            { size && category && 
+                                <Col>
+                                    <div id='add-to-cart-wrapper'>
+                                        <button id='add-to-cart-button' onClick={() => handleAddToCart()}>Add To Cart</button>
+                                    </div>
+                                </Col>
+
+                            }
                         </Row>
                     </Col>
                 </Row>

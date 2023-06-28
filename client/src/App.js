@@ -6,6 +6,7 @@ import Login from './components/Login';
 import Register from './components/Register';
 import Shop from './components/Shop';
 import Blog from './components/Blog';
+import Cart from './components/Cart'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Subscribe from './components/Subscribe';
@@ -77,6 +78,13 @@ function App() {
           path : '/individual-product/:name',
           element : <IndividualProduct 
                       products={products}
+                      userURLEndpoint={userURLEndpoint}
+                    />
+        },
+        {
+          path : '/cart',
+          element : <Cart
+
                     />
         }
        
