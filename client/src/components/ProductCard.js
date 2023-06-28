@@ -1,10 +1,13 @@
 import React from 'react'
 import './ProductCard.css'
+import { useNavigate } from 'react-router-dom'
 
 
 
 
 const ProductCard = (props) => {
+
+    const navigate = useNavigate()
 
     const changeBackgroundColor = (backgroundColor, id) => {
         // console.log(id)
@@ -21,6 +24,10 @@ const ProductCard = (props) => {
 
             onMouseLeave={() => {
                 changeBackgroundColor('#e3ded7', name)
+            }}
+
+            onClick={(e) => {
+                navigate(`/individual-product/${product.name}`)
             }}
         >
             <div className='img-container' id={`${name}`}>

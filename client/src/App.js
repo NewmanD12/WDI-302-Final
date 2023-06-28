@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import Subscribe from './components/Subscribe';
 import BrewGuides from './components/BrewGuides';
+import IndividualProduct from './components/IndividualProduct';
 
 const userURLEndpoint = process.env.REACT_APP_USER_ENDPOINT
 const productURLEndpoint = process.env.REACT_APP_PRODUCTS_ENDPOINT
@@ -71,6 +72,12 @@ function App() {
           element : <BrewGuides 
           
                     /> 
+        }, 
+        {
+          path : '/individual-product/:name',
+          element : <IndividualProduct 
+                      products={products}
+                    />
         }
        
       ]
