@@ -52,11 +52,12 @@ const IndividualProduct = (props) => {
             category, 
             size,
             quantity,
+            price : possibleTotal,
             "userID" : auth.userID
         })
-        .then((res) => console.log(res.data))
+        .then((res) => console.log('success'))
         .catch((err) => console.log(err))
-        // .finally(() => navigate('/cart'))
+        .finally(() => navigate('/cart'))
         
     }
 

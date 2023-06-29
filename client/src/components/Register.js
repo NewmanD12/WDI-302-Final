@@ -28,7 +28,7 @@ const Register = (props) => {
         e.preventDefault()
         // console.log(firstName, lastName, username, password)
         const registerResult = await auth.register(firstName, lastName, username, password)
-        console.log(registerResult)
+        // console.log(registerResult)
         if(registerResult.success){
           auth.login(username, password)
           navigate('/')
