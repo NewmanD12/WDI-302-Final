@@ -83,19 +83,20 @@ const login = async (req, res) => {
 
 const addToCart = async (req, res) => {
     try{
-        const { name, category, size, quantity, userID } = req.body
+        const { name, category, size, quantity, price, userID } = req.body
         const user = await User.findOne({_id : userID})
         let updatedCart = []
         const product = {
             productName : name, 
             category, 
             size, 
+            price,
             quantity
         }
 
+
         if(user){
             updatedCart = [...user.cart, product]
-            // console.log(updatedCart)
         }
 
         const updatedUser = await User.findByIdAndUpdate(userID,
@@ -117,8 +118,44 @@ const addToCart = async (req, res) => {
     }
 }
 
+const singleUser = async (req, res) => {
+
+    const userID = req.params.userID
+    console.log(userID)
+
+    
+    try {
+        const user = await User.findOne({_id : userID})
+
+
+        const editedUser = {
+            "id" : user._id,
+            "firstName" : user.firstName,
+            "lastName" : user.lastName,
+            "isAdmin" : user.isAdmin,
+            "subscriptionList" : user.subscriptionList,
+            "cart" : user.cart
+        }
+        res.send({
+            success : true,
+            user : editedUser
+        })
+        
+
+
+        
+    } catch (error) {
+        res.send({
+            success : false,
+            error : error.toString()
+        })
+    }
+
+}
+
 module.exports = {
     createUser,
     login, 
-    addToCart
+    addToCart, 
+    singleUser
 }

@@ -14,4 +14,6 @@ router.post('/login', userController.login)
 
 router.post('/add-to-cart', userController.addToCart)
 
+router.get('/single-user/:userID', userController.singleUser)
+
 module.exports = router;

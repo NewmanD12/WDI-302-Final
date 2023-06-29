@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
         productName : String,
         category : String,
         size : String,
+        price : Number,
         quantity : Number
     }]
 })
