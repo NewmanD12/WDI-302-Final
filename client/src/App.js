@@ -1,17 +1,20 @@
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
-import Welcome from './components/Welcome'
-import Login from './components/Login';
-import Register from './components/Register';
-import Shop from './components/Shop';
-import Blog from './components/Blog';
-import Cart from './components/Cart'
+import Welcome from './Pages/Welcome'
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import Shop from './Pages/Shop';
+import Blog from './Pages/Blog';
+import Cart from './Pages/Cart'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import Subscribe from './components/Subscribe';
-import BrewGuides from './components/BrewGuides';
+import Subscribe from './Pages/Subscribe';
+import BrewGuides from './Pages/BrewGuides';
 import IndividualProduct from './components/IndividualProduct';
+import AddProduct from './Pages/AddProduct';
+import ShippingInfo from './Pages/ShippingInfo';
+import Shipping from './Pages/Shipping';
 
 const userURLEndpoint = process.env.REACT_APP_USER_ENDPOINT
 const productURLEndpoint = process.env.REACT_APP_PRODUCTS_ENDPOINT
@@ -85,6 +88,24 @@ function App() {
           path : '/cart',
           element : <Cart
                       userURLEndpoint={userURLEndpoint}                      
+                    />
+        },
+        {
+          path : '/add-product',
+          element : <AddProduct 
+                      productURLEndpoint={productURLEndpoint}
+                    />
+        },
+        {
+          path : '/shipping-info',
+          element : <ShippingInfo 
+                      userURLEndpoint={userURLEndpoint} 
+                    />
+        },
+        {
+          path : '/shipping',
+          element : <Shipping 
+          
                     />
         }
        

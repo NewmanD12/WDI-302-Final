@@ -23,7 +23,6 @@ const IndividualProduct = (props) => {
     // console.log(userURLEndpoint)
     
     
-    // console.log(singleProduct)
     let backgroundColor = ''
     let description = ''
     let categoryOptions = []
@@ -32,11 +31,15 @@ const IndividualProduct = (props) => {
         description = singleProduct.description
         categoryOptions = [...new Set(singleProduct.productBreakdown.map(item => item.category))]; 
     }
+    console.log(backgroundColor)
 
     const findSizeOptions = (category) => {
         const prodOptions = singleProduct.productBreakdown.filter((prod) => prod.category === category)
+        // console.log(prodOptions)
         setSizeOptions([...new Set(prodOptions.map(item => item.size))])
     }
+
+    // console.log(sizeOptions)
 
     const calculateTotal = (size) => {
         const product = singleProduct.productBreakdown.filter((prod) => prod.category === category && prod.size === size)[0]
@@ -96,7 +99,7 @@ const IndividualProduct = (props) => {
                                     </Form.Select>
                                 </Form>
                                 {
-                                    sizeOptions.length > 1 &&     <div>
+                                    sizeOptions.length > 0 &&     <div>
                                                         <h6>Size</h6>
                                                         <Form id='size-form'>
                                                             <Form.Select onChange={(e) => {

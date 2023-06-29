@@ -1,0 +1,27 @@
+#cart-summary-banner{
+    padding: 3% 0%;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    background-color: #f1f0ee;
+}
+
+.pagination-options{
+    color: black;
+}
+
+#state-select{
+    width: 100%;
+    padding: 2% 2%;
+}
+
+#shipping-submit{
+    background-color: #1f1815;
+    width: 100%;
+    margin-top: 5%;
+    padding: 3%;
+    font-weight: 600;
+}
+
+#return-to-cart {
+    color: black;
+}

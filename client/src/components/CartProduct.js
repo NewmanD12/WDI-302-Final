@@ -10,22 +10,19 @@ const CartProduct = (props) => {
     // console.log(productName, category, size, quantity)
 
     let imgSrc = ''
-    // console.log(props.product)
-    // // const imgSrc = productName.toLowerCase().replace(" ", '_')
-    // console.log(productName)
     if(productName){
         imgSrc = productName.toLowerCase().replace(" ", '_')
     }
 
     return (
-        <Container className='m-3'>
-            <Row>
+        <Container className='m-3' id='cart-prod-container'>
+            <Row className='justify-content-between'>
                 <Col sm={4}>
                     <img src={`${imgSrc}.png`}/>
                 </Col>
-                <Col sm={8} id='cart-prod-info'>
+                <Col sm={5} id='cart-prod-info'>
                     <h3>{productName}</h3>
-                    <p>Sub-Total: ${quantity * price}</p>
+                    <p>${price}/each</p>
                     <p>{size}</p>
                     <div id='cart-card-quantity'>
                         <p id='minus-button'>-</p>

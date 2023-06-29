@@ -165,7 +165,7 @@ function ResponsiveAppBar() {
                 onClose={handleCloseUserMenu}
                 >
                 {auth.isAdmin && <MenuItem onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center" onClick={() => navigate('#')}>Add Product</Typography>
+                                    <Typography textAlign="center" onClick={() => navigate('add-product')}>Add Product</Typography>
                                 </MenuItem>
                 }
 
