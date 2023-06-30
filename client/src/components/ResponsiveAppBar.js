@@ -40,7 +40,7 @@ function ResponsiveAppBar() {
   };
 
   const redirectToPage = (e) => {
-        const page = e.target.value.toLowerCase().replace(' ', '')
+        const page = e.target.value.toLowerCase().replace(' ', '-')
         navigate(`/${page}`)
   }
 
@@ -102,7 +102,7 @@ function ResponsiveAppBar() {
                 }}
                 >
                 {pages.map((page) => (
-                    <MenuItem key={page} value={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                    <MenuItem key={page} value={page} onClick={() => navigate(`/${page.toLowerCase().replace(' ', '-')}`)}>
                         <Typography textAlign="center" >{page}</Typography>
                     </MenuItem>
                 ))}

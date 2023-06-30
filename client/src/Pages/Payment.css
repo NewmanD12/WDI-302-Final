@@ -1,0 +1,16 @@
+#payment-shipping-email, #payment-shipping-address{
+    border-bottom: 1px solid black;
+    padding: 2% 0%;
+    /* padding-bottom: ; */
+}
+
+#payment-form-container{
+    background-color: #f1f0ee;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 4%;
+}
+
+#return-to-shipping{
+    color: black;
+}

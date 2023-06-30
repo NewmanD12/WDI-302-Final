@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import React from 'react'
 import { useAuth } from '../Hooks/Auth';
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import './Shipping.css'
 
@@ -9,7 +10,10 @@ const Shipping = (props) => {
 
   const { userURLEndpoint } = props
   const auth = useAuth()
+  const navigate = useNavigate()
   const [user, setUser] = useState({})
+  const [selectedShipping, setSelectedShipping] = useState('')
+  const [shippingPrice, setShippingPrice] = useState('')
 
   // console.log(auth)
 
@@ -18,15 +22,31 @@ const Shipping = (props) => {
   const shippingTypes = ['USPS Priority Mail', 'UPS Ground', 'UPS 2nd Day Air', 'UPS Next Day Air']
   const shippingPrices = ['$10.85', '$12.22', '$17.66', '$23.97']
 
-  useEffect(() => {
-    axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
-            .then((res) => {
-                setUser(res.data.user)
-            })
-            .catch((err) => {
-                // console.log('error: ', err.toString())
-            })
-  }, [auth])
+  // useEffect(() => {
+  //   axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
+  //           .then((res) => {
+  //               setUser(res.data.user)
+  //           })
+  //           .catch((err) => {
+  //               // console.log('error: ', err.toString())
+  //           })
+  // }, [auth])
+
+  // console.log(shippingPrice)
+
+  const handleSubmit = async () => {
+    const newShippingInfo = {
+      ...auth.shippingInfo,
+      "selectedShipping" : selectedShipping,
+      "shippingPrice" : shippingPrice
+    }
+    const addedResult = await auth.addShippingInfo(newShippingInfo, auth)
+    if(addedResult){
+      navigate('/payment')
+    }
+  }
+ 
+  // console.log(selectedShipping)
 
   return (
     <Container id='shipping-container'>
@@ -70,6 +90,12 @@ const Shipping = (props) => {
                       type='radio'
                       label={`${type}`}
                       className='shipping-type'
+                      value={`${type}`}
+                      onChange={(e) => {
+                        setSelectedShipping(e.target.value)
+                        setShippingPrice(shippingPrices[index])
+                        }
+                      }
                     />
                   </Col>
                   <Col>
@@ -83,7 +109,7 @@ const Shipping = (props) => {
       </Row>
       <Row>
         <Col md={6}>
-          <Button id='continue-to-payment-button'>Continue to payment</Button>
+          <Button id='continue-to-payment-button' onClick={() => handleSubmit()}>Continue to payment</Button>
         </Col>
       </Row>
       <Row>

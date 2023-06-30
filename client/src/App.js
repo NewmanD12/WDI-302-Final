@@ -15,6 +15,7 @@ import IndividualProduct from './components/IndividualProduct';
 import AddProduct from './Pages/AddProduct';
 import ShippingInfo from './Pages/ShippingInfo';
 import Shipping from './Pages/Shipping';
+import Payment from './Pages/Payment';
 
 const userURLEndpoint = process.env.REACT_APP_USER_ENDPOINT
 const productURLEndpoint = process.env.REACT_APP_PRODUCTS_ENDPOINT
@@ -72,7 +73,7 @@ function App() {
                     /> 
         },
         {
-          path : '/brewguides',
+          path : '/brew-guides',
           element : <BrewGuides 
           
                     /> 
@@ -107,7 +108,14 @@ function App() {
           element : <Shipping 
                       userURLEndpoint={userURLEndpoint} 
                     />
+        },
+        {
+          path : '/payment',
+          element : <Payment 
+          
+                    />
         }
+
        
       ]
     }
