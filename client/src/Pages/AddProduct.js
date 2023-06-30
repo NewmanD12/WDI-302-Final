@@ -94,7 +94,7 @@ const AddProduct = (props) => {
                     </Form.Select>
                     
                     </Form>
-                    <Button variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
+                    <Button id='product-submit-button' variant="primary" type="submit" onClick={(e) => handleSubmit(e)}>
                     Submit
                     </Button>
             </Col>

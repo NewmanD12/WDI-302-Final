@@ -2,3 +2,12 @@
     width: 100%;
     padding: 3%;
 }
+
+
+#product-submit-button{
+    background-color: #1f1815;
+    width: 100%;
+    margin-top: 5%;
+    padding: 3%;
+    font-weight: 600;
+}
