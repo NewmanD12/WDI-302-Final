@@ -105,7 +105,7 @@ function App() {
         {
           path : '/shipping',
           element : <Shipping 
-          
+                      userURLEndpoint={userURLEndpoint} 
                     />
         }
        

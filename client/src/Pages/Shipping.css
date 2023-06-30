@@ -1,0 +1,58 @@
+.change-button{
+    text-align: end;
+    margin-top: 1%;
+}
+
+#contact-container{
+    border: 1px solid black;
+    border-radius: 5px;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    background-color: #f6f5f3;
+
+}
+
+#shipping-email{
+    border-bottom: 1px solid black;
+    padding: 2% 0%;
+    /* padding-bottom: ; */
+}
+
+#shipping-address{
+    padding: 1% 0%;
+}
+
+.form-check-label {
+    margin: 5%;
+}
+
+#shipping-form{
+    background-color: #f6f5f3;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 0% 8%;
+}
+
+.individual-type{
+    border-bottom: 1px solid black;
+}
+
+.shipping-prices {
+    text-align: end;
+    padding-top: 6%;
+}
+
+#continue-to-payment-button{
+    background-color: #1f1815;
+    width: 100%;
+    margin: 6% 0%;
+    padding: 5% 0%;
+}
+
+#return-to-info{
+    color: black;
+}
+
+#return-to-info-col{
+    justify-content: center;
+}

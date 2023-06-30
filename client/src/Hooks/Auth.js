@@ -12,6 +12,7 @@ export const AuthProvider = ({ children }) => {
     const [isAdmin, setIsAdmin] = useState(false)
     const [isAuthLoading, setIsAuthLoading] = useState(false);
     const [userID, setUserID] = useState('')
+    const [shippingInfo, setShippingInfo] = useState({})
 
     useEffect(() => {
 
@@ -32,6 +33,9 @@ export const AuthProvider = ({ children }) => {
         }
         if(userData && userData.userID){
             setUserID(userData.userID)
+        }
+        if(userData && userData.shippingInfo){
+            setShippingInfo(userData.shippingInfo)
         }
     }, [isAuthLoading]);
 
@@ -73,8 +77,6 @@ export const AuthProvider = ({ children }) => {
         setIsAuthLoading(true);
         const loginResult = await loginUser(userName, password);
         if (loginResult.success) {
-            //update browser session details 
-            // console.log(loginResult.userID)
             setLSUserData(loginResult.token, loginResult.userName, loginResult.isAdmin, loginResult.userID);
         }
 
@@ -114,15 +116,27 @@ export const AuthProvider = ({ children }) => {
         variables in the watched array change.
     */
 
+    const addShippingInfo = async (shippingInfo, currentAuth) => {
+        
+        const { userToken, userName, isAdmin, userID } = currentAuth
+        
+        setIsAuthLoading(true)
+        setLSUserData(userToken, userName, isAdmin, userID, shippingInfo)
+        setIsAuthLoading(false)
+        return true
+    }
+        
     const value = useMemo(
             () => ({
                 userToken,
                 userName,
                 isAdmin,
                 userID,
+                shippingInfo,
                 login,
                 logout,
                 register,
+                addShippingInfo
             }),
             [userToken]);
 
@@ -133,14 +147,14 @@ export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-const setLSUserData = (token, userName, isAdmin, userID) => {
+const setLSUserData = (token, userName, isAdmin, userID, shippingInfo = {}) => {
 
   // caching our token session/ userName 
   // in the browser window
 //   console.log(userID)
   localStorage.setItem(
     process.env.REACT_APP_TOKEN_HEADER_KEY,
-    JSON.stringify({token, userName, isAdmin, userID})
+    JSON.stringify({token, userName, isAdmin, userID, shippingInfo})
   );
 };
 

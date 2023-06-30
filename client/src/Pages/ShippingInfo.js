@@ -18,18 +18,21 @@ const ShippingInfo = (props) => {
   const states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
 
   const [input, setInput] = useState({})
-        
-    const handleChange = (e) => {
-        setInput({
-            ...input,
-            [e.target.name]: e.target.value
-        })
-    }
+  const handleChange = (e) => {
+      setInput({
+          ...input,
+          [e.target.name]: e.target.value
+      })
+  }
 
-    const handleSubmit = () => {
-      console.log(input)
+  const handleSubmit = async () => {
+    // console.log(input)
+    const addedResult = await auth.addShippingInfo(input, auth)
+    // console.log(addedResult)
+    if(addedResult){
       navigate('/shipping')
     }
+  }
 
   useEffect(() => {
     axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
@@ -78,8 +81,8 @@ const ShippingInfo = (props) => {
       <Row className='mt-5'>
         <Col>
           <a href='/cart' className="pagination-options">Cart</a><span> → </span>
-          <a href='/shipping' className="pagination-options">Information</a><span> → </span>
-          <a className="pagination-options">Shipping</a><span> → </span>
+          <a href='/shipping-info' className="pagination-options">Information</a><span> → </span>
+          <a href='/shipping' className="pagination-options">Shipping</a><span> → </span>
           <a className="pagination-options">Payment</a>
         </Col>
       </Row>
