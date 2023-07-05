@@ -22,15 +22,15 @@ const Shipping = (props) => {
   const shippingTypes = ['USPS Priority Mail', 'UPS Ground', 'UPS 2nd Day Air', 'UPS Next Day Air']
   const shippingPrices = ['$10.85', '$12.22', '$17.66', '$23.97']
 
-  // useEffect(() => {
-  //   axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
-  //           .then((res) => {
-  //               setUser(res.data.user)
-  //           })
-  //           .catch((err) => {
-  //               // console.log('error: ', err.toString())
-  //           })
-  // }, [auth])
+  useEffect(() => {
+    axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
+            .then((res) => {
+                setUser(res.data.user)
+            })
+            .catch((err) => {
+                // console.log('error: ', err.toString())
+            })
+  }, [auth])
 
   // console.log(shippingPrice)
 

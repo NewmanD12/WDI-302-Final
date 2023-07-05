@@ -15,7 +15,7 @@ const Home = () => {
             <div id='main-welcome-img'>
                 <Container id="welcome-statement-wrapper" >
                     <Row id='welcome-statement-row'>
-                        <Col lg={8}>
+                        <Col lg={8} id='welcome-statement-container'>
                             <h1>Freshly Roasted Every Day!</h1>
                             <br />
                             <h4>Brew it hot or cold. You brew you.</h4>

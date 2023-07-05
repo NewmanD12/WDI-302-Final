@@ -3,7 +3,7 @@
     background-repeat: no-repeat;
     background-attachment: fixed; 
     background-size: cover;
-    height: 400px;
+    height: 500px;
 }
 
 #welcome-statement-wrapper {
@@ -17,10 +17,20 @@
 }
 
 #get-started-button {
-    background-color: white;
+    background-color: #1f1815;
     padding: 2% 10%;
     border: none;
-    
+    color: white;
+    border-radius: 5px;
+    opacity: 1;
+}
+
+#welcome-statement-container {
+    background-color: white;
+    opacity: .9;
+    color: black;
+    padding: 2%;
+    border-radius: 5px;
 }
 
 
