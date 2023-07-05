@@ -18,7 +18,7 @@ async function createUser(req, res) {
                 firstName,
                 lastName,
                 userName,
-                isAdmin : true, 
+                isAdmin : false, 
                 password : hashedPW
             })
 
