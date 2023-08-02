@@ -8,14 +8,66 @@ import './ShippingInfo.css'
 
 const ShippingInfo = (props) => {
 
-  const { userURLEndpoint } = props
+  const { userURLEndpoint, checkoutInfo, setCheckoutInfo } = props
   const navigate = useNavigate()
 
   const auth = useAuth()
   const [user, setUser] = useState({})
   const [total, setTotal] = useState(-1)
   const [showingCart, setShowingCart] = useState(false)
-  const states = ['Alabama','Alaska','Arizona','Arkansas','California','Colorado','Connecticut','Delaware','Florida','Georgia','Hawaii','Idaho','Illinois','Indiana','Iowa','Kansas','Kentucky','Louisiana','Maine','Maryland','Massachusetts','Michigan','Minnesota','Mississippi','Missouri','Montana','Nebraska','Nevada','New Hampshire','New Jersey','New Mexico','New York','North Carolina','North Dakota','Ohio','Oklahoma','Oregon','Pennsylvania','Rhode Island','South Carolina','South Dakota','Tennessee','Texas','Utah','Vermont','Virginia','Washington','West Virginia','Wisconsin','Wyoming']
+  // const [shippingInfoInput, setShippingInfoInput] = useState(localStorage.getItem('shippingInfo'))
+  const states = [
+    'Alabama',
+    'Alaska',
+    'Arizona',
+    'Arkansas',
+    'California',
+    'Colorado',
+    'Connecticut',
+    'Delaware',
+    'Florida',
+    'Georgia',
+    'Hawaii',
+    'Idaho',
+    'Illinois',
+    'Indiana',
+    'Iowa',
+    'Kansas',
+    'Kentucky',
+    'Louisiana',
+    'Maine',
+    'Maryland',
+    'Massachusetts',
+    'Michigan',
+    'Minnesota',
+    'Mississippi',
+    'Missouri',
+    'Montana',
+    'Nebraska',
+    'Nevada',
+    'New Hampshire',
+    'New Jersey',
+    'New Mexico',
+    'New York',
+    'North Carolina',
+    'North Dakota',
+    'Ohio',
+    'Oklahoma',
+    'Oregon',
+    'Pennsylvania',
+    'Rhode Island',
+    'South Carolina',
+    'South Dakota',
+    'Tennessee',
+    'Texas',
+    'Utah',
+    'Vermont',
+    'Virginia',
+    'Washington',
+    'West Virginia',
+    'Wisconsin',
+    'Wyoming'
+  ]
 
   const [input, setInput] = useState({})
   const handleChange = (e) => {
@@ -25,14 +77,13 @@ const ShippingInfo = (props) => {
       })
   }
 
-  const handleSubmit = async () => {
-    // console.log(input)
-    const addedResult = await auth.addShippingInfo(input, auth)
-    // console.log(addedResult)
-    if(addedResult){
-      navigate('/shipping')
-    }
-  }
+  // console.log(shippingInfoInput)
+
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [])
+
+  // console.log(auth)
 
   useEffect(() => {
     axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
@@ -163,7 +214,18 @@ const ShippingInfo = (props) => {
                 <a href='/cart' id='return-to-cart'>← Return to cart</a>
               </Col>
               <Col sm={6}>
-                <Button variant="primary" id='shipping-submit' onClick={() => handleSubmit()}>
+                <Button variant="primary" id='shipping-submit' onClick={async (e) => {
+                  e.preventDefault()
+                  // console.log(input)
+                  const addedResult = await auth.addShippingInfo(input, auth)
+
+
+    
+                  if(addedResult){
+                    setCheckoutInfo(input)
+                    navigate('/shipping')
+                  }
+                }}>
                   Continue to shipping
                 </Button>
               </Col>

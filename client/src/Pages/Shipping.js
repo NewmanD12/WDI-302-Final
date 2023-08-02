@@ -8,14 +8,20 @@ import './Shipping.css'
 
 const Shipping = (props) => {
 
-  const { userURLEndpoint } = props
+  const { userURLEndpoint, checkoutInfo, setCheckoutInfo } = props
   const auth = useAuth()
   const navigate = useNavigate()
   const [user, setUser] = useState({})
   const [selectedShipping, setSelectedShipping] = useState('')
   const [shippingPrice, setShippingPrice] = useState('')
 
-  // console.log(auth)
+  // console.log(checkoutInfo)
+  
+  useEffect(() => {
+    window.scrollTo(0,0);
+  }, [])
+
+  console.log(auth)
 
   const {email, address, city, fName, lName, state, zipCode} = auth.shippingInfo
 
@@ -31,8 +37,6 @@ const Shipping = (props) => {
                 // console.log('error: ', err.toString())
             })
   }, [auth])
-
-  // console.log(shippingPrice)
 
   const handleSubmit = async () => {
     const newShippingInfo = {
@@ -64,15 +68,24 @@ const Shipping = (props) => {
           <Col className='change-button'>Change</Col>
         </Row>
         <Row id='shipping-email'>
-          <Col>{email}</Col>
+          {checkoutInfo.email ? <Col>{`${checkoutInfo.email}`}</Col>
+            : (email ? <Col>{`${email}`}</Col> 
+                : 
+              '')
+          }
         </Row>
         <Row className='mt-3'>
           <Col>Ship to:</Col>
           <Col className='change-button'>Change</Col>
         </Row>
+
+
+
         <Row id='shipping-address'>
-          <Col>{`${address}, ${city} ${state} ${zipCode}`}</Col>
+          {checkoutInfo.address && <Col>{`${checkoutInfo.address}, ${checkoutInfo.city} ${checkoutInfo.state} ${checkoutInfo.zipCode}`}</Col>}
+          {address && <Col>{`${address}, ${city} ${state} ${zipCode}`}</Col>}
         </Row>
+        
       </Container>
       <Row className='mt-5'>
         <Col>

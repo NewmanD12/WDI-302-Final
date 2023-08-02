@@ -24,6 +24,7 @@ const productURLEndpoint = process.env.REACT_APP_PRODUCTS_ENDPOINT
 function App() {
 
   const [products, setProducts] = useState([])
+  const [checkoutInfo, setCheckoutInfo] = useState({})
 
   useEffect(() => {
     axios.get(`${productURLEndpoint}/all-products`)
@@ -101,18 +102,22 @@ function App() {
           path : '/shipping-info',
           element : <ShippingInfo 
                       userURLEndpoint={userURLEndpoint} 
+                      checkoutInfo={checkoutInfo}
+                      setCheckoutInfo={setCheckoutInfo}
                     />
         },
         {
           path : '/shipping',
           element : <Shipping 
                       userURLEndpoint={userURLEndpoint} 
+                      checkoutInfo={checkoutInfo}
+                      setCheckoutInfo={setCheckoutInfo}
                     />
         },
         {
           path : '/payment',
           element : <Payment 
-          
+                      checkoutInfo={checkoutInfo}
                     />
         }
 

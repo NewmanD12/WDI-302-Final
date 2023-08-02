@@ -31,7 +31,7 @@ const IndividualProduct = (props) => {
         description = singleProduct.description
         categoryOptions = [...new Set(singleProduct.productBreakdown.map(item => item.category))]; 
     }
-    console.log(backgroundColor)
+    // console.log(backgroundColor)
 
     const findSizeOptions = (category) => {
         const prodOptions = singleProduct.productBreakdown.filter((prod) => prod.category === category)
@@ -75,13 +75,13 @@ const IndividualProduct = (props) => {
                         id='single-imgs'
                     />
                     </Col>
-                    <Col md={6} className='mt-3' id='prod-info'>
-                        <Row className='m-3'>
-                            <Col sm={11} id='info-wrapper'>
-                                <h1>{name}</h1>
-                                {possibleTotal > 0 && <p>${possibleTotal}/each</p>}
-                                <p>{description}</p>
-                                <h6>Grind</h6>
+                    <Col md={6} id='prod-info'>
+                        <Row className='m-5'>
+                            <Col className='mt-3' sm={11} id='info-wrapper'>
+                                <h1 className='mt-5'>{name}</h1>
+                                {possibleTotal > 0 && <p className='mt-2'>${possibleTotal}/each</p>}
+                                <p className='mt-5'>{description}</p>
+                                <h6 className='mt-5'>Grind</h6>
                                 <Form id='category-form' >
                                     <Form.Select onChange={(e) => {
                                         setCategory(e.target.value)

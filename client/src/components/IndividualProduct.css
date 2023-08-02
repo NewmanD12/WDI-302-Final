@@ -1,7 +1,5 @@
 #body-wrapper{
-    height: 1250px;
-    padding-top: 10%;
-    padding-bottom: 40%;
+    padding: 15% 0%;
 }
 
 #single-imgs {
@@ -14,12 +12,6 @@
 #img-holder{
     display: flex;
     justify-content: center;
-}
-
-#prod-info-container{
-    display: flex;
-    justify-content: start;
-    padding-left: 5%;
 }
 
 #category-form{

@@ -1,14 +1,18 @@
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import Carousel from 'react-bootstrap/Carousel'
 
 import "./Welcome.css"
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Hooks/Auth';
+
 
 const Home = () => {
 
     const navigate = useNavigate()
+    const auth = useAuth()
+    console.log(auth)
+
 
     return (
         <>

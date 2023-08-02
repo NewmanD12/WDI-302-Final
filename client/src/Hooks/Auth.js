@@ -97,7 +97,6 @@ export const AuthProvider = ({ children }) => {
             }),
         });
         const responseJSON = await response.json();
-        // console.log("login user response" + responseJSON)
         return responseJSON;
     };
 
@@ -149,9 +148,6 @@ export const useAuth = () => {
 
 const setLSUserData = (token, userName, isAdmin, userID, shippingInfo = {}) => {
 
-  // caching our token session/ userName 
-  // in the browser window
-//   console.log(userID)
   localStorage.setItem(
     process.env.REACT_APP_TOKEN_HEADER_KEY,
     JSON.stringify({token, userName, isAdmin, userID, shippingInfo})

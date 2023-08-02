@@ -32,13 +32,10 @@ const ProductCard = (props) => {
             }}
         >
             <div className='img-container' id={`${name}`}>
-                <img src={`/${name}.png`}></img>
+                <img src={`/${name}.png`} alt={`${name} - ${product.description}`}></img>
             </div>
             <div id='bottom-info'>
                 <h4>{product.name}</h4>
-                <div id='add-button'>
-                    <p>Add To Cart</p><p>+</p>
-                </div>
             </div>
         
         </div>
