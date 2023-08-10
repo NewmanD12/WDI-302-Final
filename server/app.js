@@ -31,9 +31,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(cors());
 app.options("*", cors());
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/products', productsRouter)
+app.use('/api', indexRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/products', productsRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

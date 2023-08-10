@@ -1,15 +1,18 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useAuth } from '../Hooks/Auth';
 import { Container, Row, Col, Form, Button } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom';
 import './Payment.css'
 
-const Payment = () => {
+const Payment = (props) => {
     const auth = useAuth()
     const navigate = useNavigate()
+
+    const { checkoutInfo } = props
     
-    console.log(auth)
+    // console.log(checkoutInfo)
     const {email, address, city, fName, lName, state, zipCode, selectedShipping, shippingPrice} = auth.shippingInfo
+    console.log(auth)
 
     const [input, setInput] = useState({})
 
@@ -19,6 +22,10 @@ const Payment = () => {
             [e.target.name]: e.target.value
         })
     }
+
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
 
     const handleSubmit = () => {
         alert("Your payment has been processed")
@@ -56,7 +63,8 @@ const Payment = () => {
                         <Col className='change-button'>Change</Col>
                     </Row>
                     <Row id='shipping-address'>
-                        <Col>{`${selectedShipping} - ${shippingPrice}`}</Col>
+                        {checkoutInfo.selectedShipping && <Col>{`${checkoutInfo.selectedShipping} - ${checkoutInfo.shippingPrice}`}</Col>}
+                        {selectedShipping && <Col>{`${selectedShipping} - ${shippingPrice}`}</Col>}
                     </Row>
                 </Container>
             </Row>
