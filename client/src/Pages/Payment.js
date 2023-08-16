@@ -56,15 +56,20 @@ const Payment = (props) => {
                         <Col className='change-button'>Change</Col>
                     </Row>
                     <Row id='payment-shipping-address'>
-                        <Col>{`${address}, ${city} ${state} ${zipCode}`}</Col>
+                        {address && <Col>{`${address}, ${city} ${state} ${zipCode}`}</Col>}
                     </Row>
                     <Row className='mt-3'>
                         <Col>Method:</Col>
                         <Col className='change-button'>Change</Col>
                     </Row>
                     <Row id='shipping-address'>
-                        {checkoutInfo.selectedShipping && <Col>{`${checkoutInfo.selectedShipping} - ${checkoutInfo.shippingPrice}`}</Col>}
-                        {selectedShipping && <Col>{`${selectedShipping} - ${shippingPrice}`}</Col>}
+                        {checkoutInfo.selectedShipping ? <Col>{`${checkoutInfo.selectedShipping} - ${checkoutInfo.shippingPrice}`}</Col>
+                        : 
+                        (selectedShipping ? <Col>{`${selectedShipping} - ${shippingPrice}`}</Col>
+                        :
+                        ''
+                        )
+                        }
                     </Row>
                 </Container>
             </Row>

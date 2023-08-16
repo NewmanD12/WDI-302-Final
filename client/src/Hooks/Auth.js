@@ -1,5 +1,4 @@
 import { useState, useEffect, createContext, useContext, useMemo } from "react";
-import Axios from "../lib/Axios";
 const AuthContext = createContext();
 const urlEndpoint = process.env.REACT_APP_USER_ENDPOINT
 
@@ -44,25 +43,17 @@ export const AuthProvider = ({ children }) => {
     const register = async (firstName, lastName, userName, password) => {
         setIsAuthLoading(true);
         const registerResult = await registerUser(firstName, lastName, userName, password);
-        // if(registerResult.success){
-        //   const loginResult = await loginUser(userName, password)
-        //   if(loginResult.success){
-        //     setLSUserData(loginResult.token, loginResult.userFirstName, loginResult.userLastName, loginResult.userName)
-        //   }
-        // }
+        if(registerResult.success){
+          const loginResult = await loginUser(userName, password)
+          if(loginResult.success){
+            setLSUserData(loginResult.token, loginResult.userFirstName, loginResult.userLastName, loginResult.userName)
+          }
+        }
         setIsAuthLoading(false);
         return registerResult;
     };
 
     const registerUser = async (firstName, lastName, userName, password) => {
-
-        let user = {
-            firstName: firstName, 
-            lastName: lastName,
-            userName: userName,
-            password: password
-        }
-
         const url = `${urlEndpoint}/create-user`;
         const response = await fetch(url, {
                 method: "POST",
@@ -126,7 +117,6 @@ export const AuthProvider = ({ children }) => {
     const addShippingInfo = async (shippingInfo, currentAuth) => {
         
         const { userToken, userName, isAdmin, userID } = currentAuth
-        
         setIsAuthLoading(true)
         setLSUserData(userToken, userName, isAdmin, userID, shippingInfo)
         setIsAuthLoading(false)

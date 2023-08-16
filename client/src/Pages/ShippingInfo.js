@@ -15,7 +15,6 @@ const ShippingInfo = (props) => {
   const [user, setUser] = useState({})
   const [total, setTotal] = useState(-1)
   const [showingCart, setShowingCart] = useState(false)
-  // const [shippingInfoInput, setShippingInfoInput] = useState(localStorage.getItem('shippingInfo'))
   const states = [
     'Alabama',
     'Alaska',
@@ -86,13 +85,15 @@ const ShippingInfo = (props) => {
   // console.log(auth)
 
   useEffect(() => {
-    axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
-            .then((res) => {
-                setUser(res.data.user)
-            })
-            .catch((err) => {
-                // console.log('error: ', err.toString())
-            })
+    if(auth.userID){
+      axios.get(`${userURLEndpoint}/single-user/${auth.userID}`)
+              .then((res) => {
+                  setUser(res.data.user)
+              })
+              .catch((err) => {
+                  // console.log('error: ', err.toString())
+              })
+    }
   }, [auth])
 
   const cart = user.cart
@@ -219,8 +220,6 @@ const ShippingInfo = (props) => {
                   // console.log(input)
                   const addedResult = await auth.addShippingInfo(input, auth)
 
-
-    
                   if(addedResult){
                     setCheckoutInfo(input)
                     navigate('/shipping')
