@@ -1,4 +1,5 @@
 import { useState, useEffect, createContext, useContext, useMemo } from "react";
+import Axios from "../lib/Axios";
 const AuthContext = createContext();
 const urlEndpoint = process.env.REACT_APP_USER_ENDPOINT
 
@@ -54,6 +55,13 @@ export const AuthProvider = ({ children }) => {
     };
 
     const registerUser = async (firstName, lastName, userName, password) => {
+
+        let user = {
+            firstName: firstName, 
+            lastName: lastName,
+            userName: userName,
+            password: password
+        }
 
         const url = `${urlEndpoint}/create-user`;
         const response = await fetch(url, {

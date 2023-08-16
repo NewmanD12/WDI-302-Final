@@ -3,6 +3,7 @@
 }
 
 #single-imgs {
+    width: 90%;
     height: 600px;
     display: flex;
     justify-content: center;

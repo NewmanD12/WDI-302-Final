@@ -34,8 +34,6 @@ function ResponsiveAppBar() {
   };
 
   const handleCloseNavMenu = () => {
-    // const page = e.target.value.toLowerCase().replace(' ', '')
-    // navigate(`/${page}`)
     setAnchorElNav(null);
   };
 
@@ -102,7 +100,10 @@ function ResponsiveAppBar() {
                 }}
                 >
                 {pages.map((page) => (
-                    <MenuItem key={page} value={page} onClick={() => navigate(`/${page.toLowerCase().replace(' ', '-')}`)}>
+                    <MenuItem key={page} value={page} onClick={() => {
+                        navigate(`/${page.toLowerCase().replace(' ', '-')}`)
+                        handleCloseNavMenu()
+                    }}>
                         <Typography textAlign="center" >{page}</Typography>
                     </MenuItem>
                 ))}
@@ -135,7 +136,7 @@ function ResponsiveAppBar() {
                     onClick={(e) => {
                         redirectToPage(e)
                     }}
-                    sx={{ my: 1, color: '#dad4be', display: 'block' }}
+                    sx={{ my: 3, color: '#dad4be', display: 'block' }}
                 >
                     {page}
                 </Button>

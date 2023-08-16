@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import { Container, Row, Col } from 'react-bootstrap'
 import { useNavigate, useParams } from 'react-router-dom'
@@ -22,6 +22,9 @@ const IndividualProduct = (props) => {
     const navigate = useNavigate()
     // console.log(userURLEndpoint)
     
+    useEffect(() => {
+        window.scrollTo(0,0);
+    }, [])
     
     let backgroundColor = ''
     let description = ''

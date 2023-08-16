@@ -5,8 +5,8 @@ import "./Footer.css"
 
 const Footer = () => {
   return (
-    <Container id='footer-container'>
-        <Row className='justify-content-center'>
+    <Container id='footer-container' fluid>
+        <Row className='justify-content-center' lg={8}>
             <Col sm={3}>
                 <h4>About</h4>
                 <p>Our Story</p>
