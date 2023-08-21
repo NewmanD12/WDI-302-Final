@@ -16,6 +16,7 @@ import AddProduct from './Pages/AddProduct';
 import ShippingInfo from './Pages/ShippingInfo';
 import Shipping from './Pages/Shipping';
 import Payment from './Pages/Payment';
+import About from './Pages/About';
 
 const userURLEndpoint = process.env.REACT_APP_USER_ENDPOINT
 const productURLEndpoint = process.env.REACT_APP_PRODUCTS_ENDPOINT
@@ -118,6 +119,12 @@ function App() {
           path : '/payment',
           element : <Payment 
                       checkoutInfo={checkoutInfo}
+                    />
+        },
+        {
+          path : '/about',
+          element : <About
+
                     />
         }
 

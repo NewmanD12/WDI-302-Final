@@ -8,23 +8,49 @@ const Footer = () => {
     <Container id='footer-container' fluid>
         <Row className='justify-content-center' lg={8}>
             <Col sm={3}>
-                <h4>About</h4>
-                <p>Our Story</p>
-                <p>Locations</p>
-                <p>Jobs</p>
-                <p>FAQ</p>
-                <p>Contact</p>
+                <Row>
+                    <h4>About</h4>
+                </Row>
+                <Row>
+                    <a href='/about' className='footer-links'>Our Story</a>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Locations</a>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Jobs</a>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>FAQ</a>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Contact</a>
+                </Row>
             </Col>
             <Col sm={3}>
-                <h4>Wholesale</h4>
-                <p>Serve Our Coffee</p>
-                <p>Ordering</p>
+                <Row>
+                    <h4>Wholesale</h4>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Serve Our Coffee</a>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Ordering</a>
+                </Row>
             </Col>
             <Col sm={3}>
-                <h4>Learn</h4>
-                <p>Brew Guides</p>
-                <p>Blog</p>
-                <p>Impact</p>
+                <Row>
+                    <h4>Learn</h4>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Brew Guides</a>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Blog</a>
+                </Row>
+                <Row>
+                    <a href='#' className='footer-links'>Impact</a>
+                </Row>
             </Col>
         </Row>
     </Container>
