@@ -1,0 +1,28 @@
+#about-intro {
+    text-align: center;
+    color: white;
+}
+
+#about-intro-col {
+    background-image: url('https://images.unsplash.com/photo-1447933601403-0c6688de566e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y29mZmVlJTIwYmVhbnxlbnwwfHwwfHx8MA%3D%3D&w=1000&q=80');
+    padding: 20% 10% 5%;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    background-repeat: no-repeat;
+    margin: 0% 5%;
+}
+
+#about-intro-row {
+    padding-bottom: 2%;
+    border-bottom: 1px solid black;
+}
+
+#our-story-col{
+    text-align: center;
+}
+
+#our-story-img {
+    margin: 5% 0%;
+    border: 2px solid black;
+    border-radius: 5%;
+}
