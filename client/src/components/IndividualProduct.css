@@ -3,7 +3,7 @@
 }
 
 #single-imgs {
-    height: 115%;
+    height: 600px;
     display: flex;
     justify-content: center;
     box-shadow: -25px 25px 50px black;
