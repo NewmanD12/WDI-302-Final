@@ -11,7 +11,7 @@ const Payment = (props) => {
     const { checkoutInfo } = props
     
     const {email, address, city, fName, lName, state, zipCode, selectedShipping, shippingPrice} = auth.shippingInfo
-    console.log(auth)
+    // console.log(auth)
 
     const [input, setInput] = useState({})
 

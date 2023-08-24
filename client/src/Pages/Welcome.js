@@ -11,7 +11,7 @@ const Home = () => {
 
     const navigate = useNavigate()
     const auth = useAuth()
-    console.log(auth)
+    // console.log(auth)
 
 
     return (

@@ -53,7 +53,7 @@ const Login = () => {
                         navigate('/')
                     }
                     else{
-                        console.log(loginResult)
+                        // console.log(loginResult)
                         setErrorMessage(loginResult.message)
                     }
                   }}

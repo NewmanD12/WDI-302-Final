@@ -15,12 +15,21 @@ const Shipping = (props) => {
   const [shippingPrice, setShippingPrice] = useState('')
 
   // console.log(checkoutInfo)
+
+  const clearRadios = (shippingType) => {
+    const possibleInputs = document.getElementsByClassName('form-check-input')
+    for(let i of possibleInputs){
+      if(i.value !== shippingType){
+        i.checked = false
+      }
+    }
+  }
   
   useEffect(() => {
     window.scrollTo(0,0);
   }, [])
 
-  console.log(auth)
+  // console.log(auth)
 
   const {email, address, city, fName, lName, state, zipCode} = auth.shippingInfo
 
@@ -56,7 +65,7 @@ const Shipping = (props) => {
  
   // console.log(selectedShipping)
 
-  console.log(checkoutInfo)
+  // console.log(checkoutInfo)
 
   return (
     <Container id='shipping-container'>
@@ -114,7 +123,9 @@ const Shipping = (props) => {
                       label={`${type}`}
                       className='shipping-type'
                       value={`${type}`}
+                      // onClick={(e) => console.log(type)}
                       onChange={(e) => {
+                        clearRadios(type)
                         setSelectedShipping(e.target.value)
                         setShippingPrice(shippingPrices[index])
                         }
