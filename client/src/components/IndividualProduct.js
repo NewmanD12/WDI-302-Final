@@ -79,9 +79,9 @@ const IndividualProduct = (props) => {
                     />
                     </Col>
                     <Col md={6} id='prod-info'>
-                        <Row className='m-5'>
+                        <Row className='m-2'>
                             <Col className='mt-3' sm={11} id='info-wrapper'>
-                                <h1 className='mt-5'>{name}</h1>
+                                <h1 className='mt-3'>{name}</h1>
                                 {possibleTotal > 0 && <p className='mt-2'>${possibleTotal}/each</p>}
                                 <p className='mt-5'>{description}</p>
                                 <h6 className='mt-5'>Grind</h6>

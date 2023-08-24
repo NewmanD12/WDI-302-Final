@@ -31,6 +31,7 @@ const AddProduct = (props) => {
             .then((res) => console.log(res))
             .catch((err) => console.log(err))
             .finally(() => {
+                alert(`You successfully added ${input.name} to your inventory`)
                 window.location.reload(false)
             })
     }
