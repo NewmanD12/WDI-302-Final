@@ -114,8 +114,7 @@ export const AuthProvider = ({ children }) => {
         variables in the watched array change.
     */
 
-    const addShippingInfo = async (shippingInfo, currentAuth) => {
-        
+    const addShippingInfo = async (shippingInfo, currentAuth) => { 
         const { userToken, userName, isAdmin, userID } = currentAuth
         setIsAuthLoading(true)
         setLSUserData(userToken, userName, isAdmin, userID, shippingInfo)
@@ -136,7 +135,6 @@ export const AuthProvider = ({ children }) => {
                 addShippingInfo
             }),
             [userToken]);
-
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
@@ -145,7 +143,6 @@ export const useAuth = () => {
 };
 
 const setLSUserData = (token, userName, isAdmin, userID, shippingInfo = {}) => {
-
   localStorage.setItem(
     process.env.REACT_APP_TOKEN_HEADER_KEY,
     JSON.stringify({token, userName, isAdmin, userID, shippingInfo})
@@ -153,13 +150,11 @@ const setLSUserData = (token, userName, isAdmin, userID, shippingInfo = {}) => {
 };
 
 const removeLSUserData = () => {
-  //remove session from browser 
   localStorage.removeItem(process.env.REACT_APP_TOKEN_HEADER_KEY);
   return true;
 };
 
 const getLSUserData = () => {
-  //get session from browser
   return JSON.parse(
     localStorage.getItem(process.env.REACT_APP_TOKEN_HEADER_KEY)
   );
